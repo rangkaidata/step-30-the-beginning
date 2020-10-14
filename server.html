@@ -52,7 +52,7 @@ request.onload = function() {
 		console.log('Network request failed with response ' + request.status + ': ' + request.statusText)
 	}
 };		
-request.open('POST', url+'infome.php');
+request.open('POST', url+'server_info.php');
 request.send();
 
 function terimaData(paket){
