@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+
+<link rel="stylesheet" href="css/web.css">
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+
+<style>
+.kotak{
+	position:relative;
+	display:inline-block;
+	margin:10px;
+}
+.imgKecil{
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  height:90%;
+  width:90%;
+  margin:10px;
+}
+.container {
+	position: relative;
+	display:inline-block;
+	font-family: Arial;
+	max-width:250px;
+	max-height:250px;
+	margin:10px;
+}
+
+.text-block {
+  position: relative;
+  bottom: 40px;
+  background-color:green;
+  color:white;
+  text-align:center;
+  border-radius:30px;
+}
+
+
+#myImg {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 50px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  height:150%;
+}
+
+/* Caption of Modal Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
+
+</style>
+
+<title>Screenshot | Rangkaidata.com</title>
+</head>
+<body>
+<img src="favicon.ico"></img>
+<h1>Rangkai Data</h1>
+<p>
+<a href="index.html">Home</a>&nbsp|
+<a href="tutorial.html">Tutorial</a>&nbsp|
+<a href="sample.html">Sample Data</a>&nbsp|
+<b style="color:green;">Screenshot</b>&nbsp|
+<a href="https://github.com/rangkaidata">Github</a>&nbsp|
+<a href="https://twitter.com/rangkaidata">Twitter</a>
+</p>
+<p><i>Membuat Sendiri Aplikasi Sistem Informasi Akuntansi Online</i></p>
+<p><i>Step by Step Dengan Javascript</i></p>
+
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img01">
+  <div id="caption"></div>
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById("myImg");
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+var stark = document.getElementById("stark");
+
+var data=[
+	[1,'PYM HANK TECHNOLOGIES','Trial Balance',"image/screenshot/pym-trial-balance-general.png"],
+	
+	[2,'THEMYSCIRA INDUSTRIES','Trial Balance',"image/screenshot/themyscira-trial-balance-closing.png"],
+	[3,'THEMYSCIRA INDUSTRIES','Income Statement',"image/screenshot/themyscira-income-statement-adjusting.png"],
+	[4,'THEMYSCIRA INDUSTRIES','Capital Statement Adjusting',"image/screenshot/themyscira-capital-statement-adjusting.png"],
+	[5,'THEMYSCIRA INDUSTRIES','Capital Statement Closing',"image/screenshot/themyscira-balance-sheet-closing.png"],
+	
+	[6,'UMBRELLA CORPORATION','Trial Balance',"image/screenshot/umbrella-trial-balance-opening.png"],
+	[7,'UMBRELLA CORPORATION','Trial Balance',"image/screenshot/umbrella-trial-balance-general.png"],
+	[8,'UMBRELLA CORPORATION','Trial Balance',"image/screenshot/umbrella-trial-balance-adjusting.png"],
+	[9,'UMBRELLA CORPORATION','Trial Balance',"image/screenshot/umbrella-trial-balance-closing.png"],
+	[10,'UMBRELLA CORPORATION','Income Statement',"image/screenshot/umbrella-income-statement-adjusting.png"],
+	[11,'UMBRELLA CORPORATION','Capital Statement',"image/screenshot/umbrella-capital-statement-adjusting.png"],
+	[12,'UMBRELLA CORPORATION','Balance Sheet',"image/screenshot/umbrella-balance-sheet-adjusting.png"],
+	
+	[13,'YASHIDA CORPORATION','Trial Balance',"image/screenshot/yashida-trial-balance-general.png"],
+	[14,'YASHIDA CORPORATION','Trial Balance Adjusting',"image/screenshot/yashida-trial-balance-adjusting.png"],
+	[15,'YASHIDA CORPORATION','Trial Balance Closing',"image/screenshot/yashida-trial-balance-closing.png"],
+	[16,'YASHIDA CORPORATION','Income Statement',"image/screenshot/yashida-income-statement-adjusting.png"],
+	[17,'YASHIDA CORPORATION','Capital Statement',"image/screenshot/yashida-capital-statement-adjusting.png"],
+	[18,'YASHIDA CORPORATION','Balance Sheet',"image/screenshot/yashida-balance-sheet-adjusting.png"],
+	
+	[19,'OSCORP INDUSTRIES','Trial Balance',"image/screenshot/oscorp-trial-balance.png"],
+
+	[20,'DAILY PLANET','Trial Balance',"image/screenshot/daily-trial-balance-opening.png"],
+	[21,'DAILY PLANET','Trial Balance',"image/screenshot/daily-trial-balance-general.png"],
+	[22,'DAILY PLANET','Trial Balance',"image/screenshot/daily-trial-balance-adjusting.png"],
+	
+	[23,'LEX LUTHOR CORP','Trial Balance',"image/screenshot/lex-trial-balance-opening.png"],
+	[24,'LEX LUTHOR CORP','Trial Balance',"image/screenshot/lex-trial-balance-adjusting.png"],
+	
+	[25,'BRUCE WAYNE ENTERPRISES','Trial Balance',"image/screenshot/wayne-trial-balance-opening.png"],
+	[26,'BRUCE WAYNE ENTERPRISES','Trial Balance Closing',"image/screenshot/wayne-trial-balance-closing.png"],
+	[27,'BRUCE WAYNE ENTERPRISES','Income Statement',"image/screenshot/wayne-income-statement-adjusting.png"],
+	[28,'BRUCE WAYNE ENTERPRISES','Capital Statement',"image/screenshot/wayne-capital-statement-adjusting.png"],
+	[29,'BRUCE WAYNE ENTERPRISES','Balance Sheet',"image/screenshot/wayne-balance-sheet-adjusting.png"],
+	
+	[30,'TONY STARK INDUSTRIES','Trial Balance',"image/screenshot/stark-trial-balance-opening.png"],
+	[31,'TONY STARK INDUSTRIES','Trial Balance',"image/screenshot/stark-trial-balance-general.png"],
+	[32,'TONY STARK INDUSTRIES','Trial Balance Adjusting',"image/screenshot/stark-trial-balance-adjusting.png"],
+	[33,'TONY STARK INDUSTRIES','Trial Balance Closing',"image/screenshot/stark-trial-balance-closing.png"],
+	[34,'TONY STARK INDUSTRIES','Income Statement',"image/screenshot/stark-income-statement-adjusting.png"],
+	[35,'TONY STARK INDUSTRIES','Capital Statement',"image/screenshot/stark-capital-statement-adjusting.png"],
+	[36,'TONY STARK INDUSTRIES','Balance Sheet',"image/screenshot/stark-balance-sheet-adjusting.png"],
+]
+
+// loading
+var y;
+var beda;
+var pertama=0;
+
+for (y in data){
+	if (pertama===0){
+		// beda=data[y][1];
+	}
+	pertama=1;
+
+	// tambah img
+	var d =  document.createElement("DIV");
+	var h3 = document.createElement("H3");
+	var h = document.createElement("DIV");
+	var x = document.createElement("IMG");
+	var p = document.createElement("DIV");
+	var t = document.createTextNode(data[y][2]);
+	
+	d.style.height="100px";
+	d.style.innerHTML='tes';
+	
+	p.appendChild(t);
+
+	x.setAttribute("src", data[y][3]);
+	x.setAttribute("alt", data[y][2]);
+	x.classList.add('imgKecil'); 	 
+	x.onclick=function(){klik(this)};
+	
+	
+	h.classList.add('container');
+	p.classList.add('text-block');
+	d.classList.add('kotak');
+	
+	var t3;
+	if (beda!==data[y][1]){
+		d.setAttribute("id", data[y][1]); // create id
+		
+		t3 = document.createTextNode(data[y][1]);
+		h3.appendChild(t3);
+		// document.body.appendChild(h3);
+		document.body.appendChild(d);
+		d.appendChild(h3);
+	}
+	
+	h.appendChild(x);
+	h.appendChild(p);
+	document.getElementById(data[y][1]).appendChild(h);
+
+	beda=data[y][1];
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() { 
+  modal.style.display = "none";
+}
+
+
+function klik(ok){
+  modal.style.display = "block";
+  modalImg.src = ok.src;
+  captionText.innerHTML = ok.alt;
+}
+
+
+</script>
+
+<footer>
+	<p>&copy;2020 rangkaidata.com</p>
+</footer>	
+
+</body>
+</html> 

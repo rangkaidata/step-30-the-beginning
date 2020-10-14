@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/web.css">
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<title>Sample Data | Rangkaidata.com</title>
+</head>
+<body>
+<img src="favicon.ico"></img>
+<h1>Rangkai Data</h1>
+
+<p>
+<a href="index.html">Home</a>&nbsp|
+<a href="tutorial.html">Tutorial</a>&nbsp|
+<b style="color:green;">Sample Data</b>&nbsp|
+<a href="screenshot.html">Screenshot</a>&nbsp|
+<a href="https://github.com/rangkaidata">Github</a>&nbsp|
+<a href="https://twitter.com/rangkaidata">Twitter</a>
+</p>
+
+<p><i>Membuat Sendiri Aplikasi Sistem Informasi Akuntansi Online</i></p>
+<p><i>Step by Step Dengan Javascript</i></p>
+
+<div id="info"></div>
+
+<script>
+//var url='http://localhost/v0/server/';
+var url='https://datablok.id/v0/sample_company/';
+var url_image='https://rangkaidata.com/image/';
+var request = new XMLHttpRequest();
+var data;
+
+function pertama(){
+	document.getElementById('info').innerHTML='<i style="color:red;">Please wait ...</i>';
+
+	request.onload = function() {
+		if (request.readyState===4){
+			console.log(request.responseText);
+			var paket = JSON.parse(request.responseText);
+			terimaData(paket);
+		} 
+		else {
+			console.log('Network request failed with response ' + request.status + ': ' + request.statusText)
+		}
+	};		
+	request.open('POST', url+'data.php');
+	request.send();
+}
+function terimaData(paket){
+	data=paket;
+	html='<h2>Sample Data</h2>';
+	html+='<table width="100%">'
+		+'<tr>'
+		+'<th>No.</th>'
+		+'<th>Logo</th>'
+		+'<th>Start Date</th>'
+		+'<th>Company Name</th>'
+		+'<th>Address</th>'
+		+'<th>Action</th>'
+		+'</tr>';
+
+	for (x in paket){			
+		html+='<tr>';
+		html+='<td>'+(parseInt(x)+1)+'</td>'
+			+'<td><img style="height:60px;width:60px;" src='+url_image+'uploads/'+paket[x].logo+'></td>'
+			+'<td>'+ tglIna(paket[x].start_date) +'</td>'
+			+'<td>'+ paket[x].company_name +'</td>'
+			+'<td>'+ paket[x].address +'</td>'
+			+'<td><button id="btn_detail" onclick="showData(\''+x+'\')"></button></td>';
+		html+='</tr>';
+	}
+	
+	html+='</table>';
+	html+='<p><i>&#10020 Daily Planet sudah menjadi milik Wayne Enterprises sebuah entitas perusahaan milik <a href="https://www.imdb.com/title/tt1877830/mediaindex?ref_=tt_pv_mi_sm">Bruce Wayne</a> dari Gotham city.</i>&#128512;&#128512;&#128512;</p>';
+	html+='<img src="https://m.media-amazon.com/images/M/MV5BNzBhNjZkMmItNzRhYS00MDVlLWI5ODgtZWQ0OTViYTI3NjRjXkEyXkFqcGdeQXVyNjc0NzQzNTM@._V1_UY100_CR62,0,100,100_AL_.jpg" alt="Bruce Wayne 2022" style="width:120px;height:120px;"></img>';
+	html+='<div id="data_show"></div>';
+
+	document.getElementById('info').innerHTML=html;
+
+}
+function tglIna(tgl){
+	var bulan = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nop", "Des"];
+	return tgl.substr(8,2)+'-'+bulan[parseInt(tgl.substr(5,2))-1]+'-'+tgl.substr(2,2) +' ' +tgl.substr(11,5);
+}
+
+function showData(a){
+	html='<button id="btn_back" onclick="samplecompany.init();"></button>'
+		+'<button id="btn_open" onclick="samplecompany.importData(\''+a+'\');"></button>';
+	//btn.innerHTML=html;
+	
+	// company profile
+	html='<button onclick="pertama();">Back</button>'
+	html+='<h2>Company Profile</h2>'
+		
+		+'<div style="display:inline-block;">'
+		+'<img style="height:150px;width:150px;" src='+url_image+'uploads/'+data[a].logo+'>'
+			+'<ul style="text-align:left;">'
+			+'<li><label>Company Name</label>: '+data[a].company_name+'</li>'
+			+'<li><label>Adress</label>: '+data[a].address+'</li>'
+			+'<li><label>Phone</label>: '+data[a].phone+'</li>'
+			+'<li><label>Fax</label>: '+data[a].fax+'</li>'
+			+'<li><label>Email</label>: '+data[a].email+'</li>'
+			+'<li><label>Start Date</label>: '+tglIna(data[a].start_date)+'</li>'
+			+'</ul>'
+		+'</div>';
+		
+	// account list table
+	html+='<h2>Account List</h2>';
+	html+='<table width="100%">';
+	html+='<tr>';
+	html+='<th>Account ID</th>';
+	html+='<th>Account Name</th>';
+	html+='<th>Account Class</th>';
+	html+='<th>Debit</th>';
+	html+='<th>Credit</th>';
+	html+='</tr>';
+	for (x in data[a].account){
+		html+='<tr>'
+			+'<td>'+data[a].account[x][0]+'</td>'
+			+'<td>'+data[a].account[x][1]+'</td>'
+			+'<td>'+data[a].account[x][2]+'</td>'
+			+'<td>'+formatSerebuan(data[a].account[x][3])+'</td>'
+			+'<td>'+formatSerebuan(data[a].account[x][4])+'</td>'
+			+'</tr>'
+	}
+	html+='</table>';
+
+	// Journal table
+	html+='<h2>Journal</h2>';
+	html+='<table width="100%">';
+	html+='<tr>';
+	html+='<th>Type</th>';
+	html+='<th>Date</th>';
+	html+='<th>Ref</th>';
+	html+='<th>Note</th>';
+	html+='<th>Account ID</th>';
+	html+='<th>Debit</th>';
+	html+='<th>Credit</th>';
+	html+='<th>Job ID</th>';
+	html+='</tr>';
+	for (x in data[a].journal){
+		html+='<tr>'
+			+'<td>'+data[a].journal[x][0]+'</td>'
+			+'<td>'+tglIna(data[a].journal[x][1])+'</td>'
+			+'<td>'+data[a].journal[x][2]+'</td>'
+			+'<td>'+data[a].journal[x][3]+'</td>'
+			+'<td>'+data[a].journal[x][4]+'</td>'
+			+'<td>'+formatSerebuan(data[a].journal[x][5])+'</td>'
+			+'<td>'+formatSerebuan(data[a].journal[x][6])+'</td>'
+			+'<td>'+data[a].journal[x][7]+'</td>'
+			+'</tr>'
+	}
+	html+='</table>';
+	//app.innerHTML=html;
+	document.getElementById('info').innerHTML=html;
+}
+
+function formatSerebuan(num) {
+    var balikin='&nbsp;';
+	if (num===undefined){return balikin}
+	if (num===null){return balikin}
+	if (num===0){return balikin}
+	if (num==='0'){return balikin}
+	if (num==='0.00'){return balikin}
+    
+    // console.log(num+'<br>');
+    
+	if (num<0){
+	    // bila nilai minus, menggunakan tanda kurung.
+	    /* 
+	    num = parseFloat(num)*-1;
+		return "("+num.toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')+")";
+		*/
+		num = parseFloat(num);
+		return num.toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'); 
+	}else{
+	    num = parseFloat(num);
+		return num.toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+	}
+}
+
+pertama();
+</script>
+
+<footer>
+	<p>&copy;2020 rangkaidata.com</p>
+</footer>	
+
+</body>
+</html> 

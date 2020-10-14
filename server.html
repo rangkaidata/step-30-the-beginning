@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<title>datablok.id</title>
+<style>
+	body{
+		font-size:small;
+		text-align:center;
+	}
+	table{
+		margin-left:auto;
+		margin-right:auto;
+	}
+	td,th{
+		padding:10px;
+		text-align:center;
+	}
+	h1,th{
+		color:green;
+	}
+</style>
+</head>
+<body>
+<h1>datablok.id</h1>
+<img style="height:60px;width:60px;" src="favicon.ico"></img>
+<div id="info"></div>
+<p>Web: <a href="https://rangkaidata.com">https://rangkaidata.com</a></p>
+<p>Github: <a href="https://github.com/rangkaidata">https://github.com/rangkaidata</a></p>
+<p>Blog: <a href="https://rangkaidata.blogspot.com">https://rangkaidata.blogspot.com</a></p>
+<p>Twitter: <a href="https://twitter.com/rangkaidata">@rangkaidata</a></p>
+<p>Email: rangkaidata@gmail.com</p>
+
+<p>Admin: budiono</p><hr>
+<p>&copy;2020 rangkaidata.com</p>
+
+<script>
+//var url='http://localhost/v0/server/';
+var url='https://datablok.id/v0/server/';
+var request = new XMLHttpRequest();
+
+document.getElementById('info').innerHTML='Please wait ...';
+
+request.onload = function() {
+	if (request.readyState===4){
+		console.log(request.responseText);
+		var paket = JSON.parse(request.responseText);
+		terimaData(paket);
+	} 
+	else {
+		console.log('Network request failed with response ' + request.status + ': ' + request.statusText)
+	}
+};		
+request.open('POST', url+'infome.php');
+request.send();
+
+function terimaData(paket){
+	var html='<table border=1>'
+		+'<caption><i>Server Info</i></caption>'
+		+'<tr>'
+		+'<th>No.</th>'
+		+'<th>Periode</th>'
+		+'<th>Folder</th>'
+		+'<th>User</th>'
+		+'<th>Blok</th>'
+		+'</tr>';
+
+	var passcode,i=1;
+	var reset; // jumlah permintaan reset password;
+	for (x in paket.data){
+		passcode=paket.data[x].passcode_count;
+		reset=paket.data[x].reset_count;
+
+		html+='<tr>'
+			+'<td>'+i+'</td>'
+			+'<td>'+paket.data[x].periode+'</td>'
+			+'<td>'+paket.data[x].folder_name+'</td>'
+			+'<td>'+paket.data[x].user_count+'</td>'
+			+'<td>'+paket.data[x].blok_count+'</td>'
+			+'</tr>';
+			i++;
+	}
+	html+='</table>';
+	html+='<p>Passcode: '+passcode+'</p>';
+	html+='<p>Reset: '+reset+'</p>';
+	
+	document.getElementById('info').innerHTML=html;
+}
+
+</script>
+</body>
+</html> 
+

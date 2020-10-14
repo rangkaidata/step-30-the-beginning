@@ -1,0 +1,206 @@
+/* App Step 16: account opening  */
+
+/* image gambar tidak kotak, tapi ada lengkungan disetiap sudut */
+img {
+	border-radius:10px;
+	border:1px solid lightgrey;
+}
+
+/* text input bundar, tidak kotak */
+input{
+	border-radius:30px;
+	padding:2px 10px 2px 10px;
+	border:1px solid grey;
+}
+
+/* text input bundar, tidak kotak */
+textarea{
+	border-radius:10px;
+	padding:10px;
+	border:1px solid grey;
+}
+
+/* button */
+/* untuk hilangkan line focus */
+*:focus {outline:none;}
+*::-moz-focus-inner {border:0;} /* ini khusus FF */
+
+button{
+	border-radius:5px;
+	border:1px solid darkgray;
+	padding:2px 10px 2px 10px;
+	margin:5px 2px 5px 2px;
+	color:#000;
+	background-color:#DCDCDC;
+	cursor:pointer;
+}
+
+button:hover{
+	background-color:#E8E8E8;
+	border:1px solid lightgrey;
+}
+
+button:focus{
+	outline:none; /*ini penting */
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+#menu{
+	background-color:#DCDCDC;
+	border-radius:10px 10px 1px 1px;
+	padding:10px;
+	margin:0;
+	width:100%;
+}
+#demo{
+	width:90%;
+	margin: 0 auto;
+}
+#main{
+	margin:0;
+	width:100%;
+	margin-bottom:100px;
+}
+
+#sub_menu{
+	position:absolute;
+	width:84%;
+	background-color:#FFFAFA;
+	padding:0 20px 50px 20px;
+	border-radius: 0 0 20px 20px;
+	display:none;
+	
+	box-shadow:0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+	z-index:100;	
+}
+
+#sub_menu_modul{
+	background-color:#2F4F4F;
+	color:#DCDCDC;
+	border-radius:10px;
+	padding:5px;
+}
+
+#btn_remove, #btn_find{
+	border-radius:30px;
+}
+
+#btn_remove:after{
+	content: " \2715";
+}
+
+#btn_search:before{
+	content: "\2299 \0020 Search";
+}
+
+#btn_create:before{
+	content: "\2295 \0020 Create new";
+}
+#btn_export:before{
+	content: "\21C8 \0020 Export";
+}
+
+#btn_import:before{
+	content: "\21CA \0020 Import";
+}
+
+#btn_back:before{
+	content: "\2718 \0020 Back";
+}
+
+#btn_close:before{
+	content: "\2716 \0020 Close";
+}
+
+#btn_add:before{
+	content: "\2295 \0020 Add row";
+}
+
+#btn_save:before{
+	content: "\2714 \0020 Save";
+}
+
+#btn_change:before{
+	content: "\2298 \0020 Change";
+}
+
+#btn_delete:before{
+	content: "\2297 \0020 Delete";
+}
+
+#btn_select:before{
+	content: "\2714 \0020";
+}
+
+#btn_find:before{
+	content: "\279C";
+}
+
+#btn_new:before{
+	content: "\25FB \0020 New";
+}
+
+#btn_continue:before{
+	content: "\2714 \0020 Delete";
+}
+
+#btn_open:before{
+	content: "Open \279C ";
+}
+
+#btn_detail:before{
+	content: "Show \279C ";
+}
+
+#btn_email:before{
+	content: "\2709 \0020";
+}
+
+#btn_plus:before{
+	content: "\2795 \0020";
+}
+
+#btn_key:before{
+	content: "\26BF \0020";
+}
+
+#btn_first:before{
+	content: '\22A2';
+}
+
+#btn_last:after{
+	content: '\22A3';
+}
+
+#btn_yes:before{
+	content: "\2295 \0020";
+}
+
+#btn_no:before{
+	content: "\2297 \0020";
+}
+
+#btn_import_all:before{
+	content: "\21CA \0020";
+}
+
+#btn_send:before{
+	content: "\272A \0020 Send";
+}
+
+#btn_sample:before{
+	content: "\272A \0020 Sample Company";
+}
+
+#kertas{
+    box-shadow:0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+#btn_backup:before{
+	content: "\25A4 \0020 Backup Data";
+}
+

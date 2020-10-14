@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<!--kosongkan cache, biar script js update -->
+		<!--
+		https://stackoverflow.com/questions/49547/how-do-we-control-web-page-caching-across-all-browsers
+		-->
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="0">
+        
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/desain.css">
+		<link rel="stylesheet" href="css/popup.css">
+		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+		<title>Akuntansi Online | Rangkaidata.com</title>
+	</head>
+<body>
+
+	<div id="blog_link" style="text-align:center;padding:5px;display:none;">
+
+	</div>
+	
+	<div id="demo">
+		<div id="menu"></div>
+		<div id="sub_menu" style="display:none;"></div>
+	
+		<main id="main">
+			<h1 id="modul">Loading ...</h1>
+			<h2 id="metode"></h2>
+			<h4 id="msg"></h4>
+			<div id="btn"></div>
+			<div id="app"></div>
+		</main>
+    	<div id="blog_footer" style="text-align:center;color:#2F4F4F;display:none;">
+		<p>
+			<b style="color:green;">Home</b>&nbsp|
+			<a href="tutorial.html">Tutorial</a>&nbsp|
+			<a href="sample.html">Sample Data</a>&nbsp|
+			<a href="screenshot.html">Screenshot</a>&nbsp|
+			<a href="https://github.com/rangkaidata">Github</a>&nbsp|
+			<a href="https://twitter.com/rangkaidata">Twitter</a>
+	    </p>
+
+			<p>&copy;2020 rangkaidata.com</p>
+        </div>	
+		<!--ini untuk tampilkan form popup-->
+		<div id="blank">
+			POP UP
+			<div id="popup">
+				<h1 id="popup_modul"></h1>
+				<div id="popup_metode"></div>
+				<div id="popup_button"></div>
+				<div id="popup_content"></div>
+			</div>
+		<div>	
+
+	</div>
+	
+	<script src="js/function.js"></script>
+	<script src="js/index.js"></script>
+	<script src="js/login.js"></script>
+	<script src="js/register.js"></script>
+	<script src="js/forgot.js"></script>
+	<script src="js/home.js"></script>
+	<script src="js/forgot.js"></script>
+		
+	<script>
+	    // just try, masalah cache terkadang engga cukup pakai header :)
+	    var d1=new Date();
+	    var dNomer=d1.getFullYear()+'-'+d1.getMonth()+'-'+d1.getDate()+'-'+d1.getHours()+'-'+d1.getMinutes();
+        
+		// https://www.w3schools.com/js/js_performance.asp
+		// PENTING!!! agar 'script js' yg tidak digunakan, tidak aktif/diikutkan.
+		// hanya 'script js' aktif yg dipanggil.
+		window.onload = function() {
+			// cek connection 
+			/*if(navigator.onLine){
+				alert('online');
+			} else {
+				alert('offline');
+			}*/
+
+			var element = document.createElement("script");
+			var element2=document.createElement("script");
+			var element3=document.createElement("script");
+			
+			switch (modul_aktif){
+			case 'logout':
+				element.src = "js/logout.js?n="+dNomer;
+				break;
+			case 'company':
+				element.src = "js/company.js?n="+dNomer;
+				element2.src="js/image.js?n="+dNomer;
+				element3.src="js/sample_company.js?n="+dNomer;
+				break;
+			case 'blok':
+				element.src = "js/blok.js?n="+dNomer;
+				break;
+			case 'notes':
+				element.src = "js/notes.js?n="+dNomer;
+				break;
+			case 'default':
+				element.src = "js/default.js?n="+dNomer;
+				break;
+			case 'user_profile':
+				element.src = "js/user_profile.js?n="+dNomer;
+				element2.src="js/image.js?n="+dNomer;
+				break;
+			case 'company_profile':
+				element.src = "js/company_profile.js?n="+dNomer;
+				break;
+			case 'accounts':
+				element.src = "js/accounts.js?n="+dNomer;
+				element2.src= "js/import_data.js?n="+dNomer;
+				break;
+			case 'manage_users':
+				element.src = "js/manage_users.js?n="+dNomer;
+				break;
+			case 'join_user':
+				element.src = "js/join_user.js?n="+dNomer;
+				break;
+			case 'account_balance':
+				element.src = "js/account_opening.js?n="+dNomer;
+				element2.src = "js/accounts.js?n="+dNomer;
+				break;
+			case 'journals':
+				element.src = "js/journals.js?n="+dNomer;
+				element2.src= "js/account_look.js?n="+dNomer;
+				element3.src= "js/import_data.js?n="+dNomer;
+				break;
+			case 'general_journal':
+				element.src= "js/general_journal.js?n="+dNomer;
+				break;
+			case 'general_ledger':
+				element.src= "js/general_ledger.js?n="+dNomer;
+				element2.src= "js/account_look.js?n="+dNomer;
+				break;
+			case 'balance_sheet':
+				element.src= "js/balance_sheet.js?n="+dNomer;
+				break;
+			case 'trial_balance':
+				element.src= "js/trial_balance.js?n="+dNomer;
+				break;
+			case 'income_statement':
+				element.src= "js/income_statement.js?n="+dNomer;
+				break;
+			case 'capital_statement':
+				element.src= "js/capital_statement.js?n="+dNomer;
+				break;
+			case 'closing_date':
+				element.src= "js/closing_date.js?n="+dNomer;
+				break;
+			case 'home':
+				element.src = "js/homepage.js?n="+dNomer;
+				element2.src="js/image.js?n="+dNomer;
+				break;
+
+			default:
+			}
+
+			document.body.appendChild(element);
+			document.body.appendChild(element2);
+			document.body.appendChild(element3);
+		};
+		loginRead();
+	</script>
+</body>
+</html> 
+
+

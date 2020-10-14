@@ -1,0 +1,49 @@
+/* App Step 16: account opening  */
+body {
+	font-family:sans-serif;
+	font-size:0.9rem;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding:0;
+}
+li {
+	margin:5px;
+}
+label{
+	display:inline-block;
+	width:160px;
+}
+form{
+	/*padding:20px;*/
+	/*border:2px solid gray;*/
+}
+div{
+	/*padding:5px;*/
+	/*border:1px solid gray;*/
+	margin:2px;
+}
+h2,h3,h4,h5,h6{
+	margin:1px;
+	color:grey;
+	margin-top:5px;
+}
+h1{
+	color:grey;
+}
+td{
+	text-align:center;
+}
+th{
+	height:50px;
+}
+table,th,td{
+	border: 1px solid lightgray;
+	padding:2px;
+}
+table{
+	border-collapse: collapse;
+	width:100%;
+}
+
